@@ -1,21 +1,20 @@
 return {
-  "catppuccin.nvim",
+  { "shaunsingh/nord.nvim" },
+
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "nord",
+    },
+  },
 }
 
 -- return {
 --   { "navarasu/onedark.nvim" },
---   opts = {
---     transparent = true,
---   },
--- }
-
--- return {
---   "tokyonight.nvim",
---   opts = {
---     transparent = true,
---     styles = {
---       sidebars = "transparent",
---       floats = "transparent",
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "dark",
 --     },
 --   },
 -- }

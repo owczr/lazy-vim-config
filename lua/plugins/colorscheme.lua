@@ -1,20 +1,18 @@
-return {
-  { "shaunsingh/nord.nvim" },
-
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "nord",
-    },
-  },
-}
-
+return { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
 -- return {
 --   { "navarasu/onedark.nvim" },
---   {
---     "LazyVim/LazyVim",
---     opts = {
---       colorscheme = "dark",
+--   opts = {
+--     transparent = true,
+--   },
+-- }
+
+-- return {
+--   "tokyonight.nvim",
+--   opts = {
+--     transparent = true,
+--     styles = {
+--       sidebars = "transparent",
+--       floats = "transparent",
 --     },
 --   },
 -- }

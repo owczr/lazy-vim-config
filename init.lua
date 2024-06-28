@@ -94,6 +94,12 @@ vim.api.nvim_set_keymap("n", "ts", ":lua require('neotest').summary.toggle()<CR>
 
 require("catppuccin").setup({
   flavour = "mocha",
-  transparent_background = true,
+  transparent_background = false,
 })
 vim.cmd.colorscheme("catppuccin")
+
+if vim.g.neovide then
+  vim.keymap.set({ "n", "v" }, "<C-+>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
+  vim.keymap.set({ "n", "v" }, "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
+  vim.keymap.set({ "n", "v" }, "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
+end

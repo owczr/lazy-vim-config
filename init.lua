@@ -76,7 +76,7 @@ else
     italic = true,
     bold = true,
   })
-
+  vim.opt.termguicolors = true
   require("bufferline").setup({
     options = {
       separator_style = "thin",
@@ -114,9 +114,9 @@ else
     },
   })
 
-  require("neodev").setup({
-    library = { plugins = { "neotest", "nvim-dap-ui" }, types = true },
-  })
+  -- require("neodev").setup({
+  --   library = { plugins = { "neotest", "nvim-dap-ui" }, types = true },
+  -- })
 
   -- run tests
   vim.api.nvim_set_keymap("n", "tr", ":lua require('neotest').run.run()<CR>", { noremap = true, silent = true })
@@ -182,4 +182,26 @@ else
       sql = { "sql-formatter" },
     },
   })
+
+  require("telescope").load_extension("projects")
+end
+
+if vim.g.goneovim then
+  -- -- Define custom highlight groups
+  -- vim.cmd([[
+  --   highlight BufferLineFill guibg=#2e3440
+  --   highlight BufferLineBackground guibg=#2e3440 guifg=#88c0d0
+  --   highlight BufferLineBufferSelected guibg=#4c566a guifg=#eceff4 gui=bold
+  --   highlight BufferLineBufferVisible guibg=#2e3440 guifg=#88c0d0
+  --   highlight BufferLineTabSelected guibg=#4c566a guifg=#eceff4
+  --   highlight BufferLineTabClose guibg=#2e3440 guifg=#88c0d0
+  --   highlight BufferLineIndicatorSelected guibg=#4c566a guifg=#2e3440
+  -- ]])
+
+  -- Set background color
+  vim.cmd([[
+    highlight Normal guibg=#2E3440
+    ]])
+
+  vim.g.nord_disable_background = true
 end

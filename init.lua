@@ -120,31 +120,37 @@ vim.api.nvim_set_keymap("n", "<F12>", ":lua require('dap').step_out()<CR>", { no
 
 require("conform").setup({
   formatters_by_ft = {
+    json = { "prettier" },
+    yaml = { "prettier" },
+    markdown = { "prettier" },
+    lua = { "stylua" },
+    python = { "black" },
     lua = { "stylua" },
     sh = { "shfmt" },
     python = { "black" },
     json = { "jq" },
     c = { "clang-format" },
     sql = { "sql-formatter" },
+    html = { "prettier" },
   },
 })
 
 require("telescope").load_extension("projects")
 
--- require("nvim-treesitter.configs").setup({
---   ensure_installed = { "c", "lua", "python", "sql", "query", "markdown", "markdown_inline", "bash" },
---   auto_install = true,
---   autotag = {
---     enable = true,
---     filetypes = { "c", "lua", "python", "sql", "query", "markdown", "markdown_inline", "bash" },
---   },
---   indent = { enable = true },
---   ignore_install = { "jsonc" },
---   highlight = {
---     enable = true,
---     additional_vim_regex_highlighting = false,
---   },
--- })
+require("nvim-treesitter.configs").setup({
+  ensure_installed = { "c", "lua", "python", "sql", "query", "markdown", "markdown_inline", "bash", "cpp" },
+  auto_install = true,
+  autotag = {
+    enable = true,
+    filetypes = { "c", "lua", "python", "sql", "query", "markdown", "markdown_inline", "bash", "cpp" },
+  },
+  indent = { enable = true },
+  ignore_install = { "jsonc" },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+})
 require("lualine").setup({ highlights = { StatusLine = { bg = "NONE", fg = "NONE" } } })
 
 -- require("lspconfig").pyright.setup({
@@ -180,3 +186,23 @@ require("lualine").setup({ highlights = { StatusLine = { bg = "NONE", fg = "NONE
 
 -- set the python virtual environment
 -- vim.g.python3_host_prog = "/home/jakub/.venvs/ffonline/bin/python"
+require("formatter").setup({
+  logging = true,
+  log_level = vim.log.levels.WARN,
+  filetype = {
+    html = {
+      function()
+        return {
+          exe = "prettier",
+          args = {
+            "--stdin-filepath",
+            util.escape_path(util.get_current_buffer_file_path()),
+            "--single-quote",
+          },
+          stdin = true,
+        }
+      end,
+    },
+    -- Add other filetypes here
+  },
+})

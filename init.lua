@@ -1,105 +1,184 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
+-- bootstrap lazy.nvIm, LazyVim and your plugins
 require("config.lazy")
-
--- terminal emulator
-vim.g.terminal_emulator = "zsh"
-vim.opt.shell = "zsh"
-
--- neo vim font
-vim.opt.guifont = "Hack Nerd Font Mono:h12"
-
-require("notify").setup({
-  background_colour = "#2E3440",
-})
-
-require("headlines").setup({
-  markdown = {
-    headline_highlights = {
-      "Headline1",
-      "Headline2",
-      "Headline3",
-      "Headline4",
-      "Headline5",
-      "Headline6",
-    },
-    codeblock_highlight = "CodeBlock",
-    dash_highlight = "Dash",
-    quote_highlight = "Quote",
-  },
-})
-
-require("bufferline").setup({
+-- require("tokyonight").setup({
+--   transparent = true,
+--   styles = {
+--     -- Style to be applied to different syntax groups
+--     -- Value is any valid attr-list value for `:help nvim_set_hl`
+--     comments = { italic = true },
+--     keywords = { italic = true },
+--     functions = {},
+--     variables = {},
+--     -- Background styles. Can be "dark", "transparent" or "normal"
+--     sidebars = "transparent", -- style for sidebars, see below
+--     floats = "transparent", -- style for floating windows
+--   },
+-- })
+-- vim.cmd([[colorscheme tokyonight]])
+-- Default options
+require("github-theme").setup({
   options = {
-    separator_style = "thin",
+    -- Compiled file's destination location
+    compile_path = vim.fn.stdpath("cache") .. "/github-theme",
+    compile_file_suffix = "_compiled", -- Compiled file suffix
+    hide_end_of_buffer = true, -- Hide the '~' character at the end of the buffer for a cleaner look
+    hide_nc_statusline = true, -- Override the underline style for non-active statuslines
+    transparent = true, -- Disable setting bg (make neovim's background transparent)
+    terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+    dim_inactive = false, -- Non focused panes set to alternative background
+    module_default = true, -- Default enable value for modules
+    styles = { -- Style to be applied to different syntax groups
+      comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
+      functions = "NONE",
+      keywords = "NONE",
+      variables = "NONE",
+      conditionals = "NONE",
+      constants = "NONE",
+      numbers = "NONE",
+      operators = "NONE",
+      strings = "NONE",
+      types = "NONE",
+    },
+    inverse = { -- Inverse highlight for different types
+      match_paren = false,
+      visual = false,
+      search = false,
+    },
+    darken = { -- Darken floating windows and sidebar-like windows
+      floats = true,
+      sidebars = {
+        enable = true,
+        list = {}, -- Apply dark background to specific windows
+      },
+    },
+    modules = { -- List of various plugins and additional options
+      -- ...
+    },
   },
-  highlights = highlights,
+  palettes = {},
+  specs = {},
+  groups = {},
 })
 
--- require("dap")
--- require("dap-python").setup("~/.virtualenvs/debugpy/Scripts/python.exe")
--- require("dap-python").test_runner = "pytest"
-
-require("toggleterm").setup({
-  open_mapping = [[<C-\>]],
-  insert_mappings = true,
-  shade_terminals = false,
-  direction = "float",
-  size = function(term)
-    if term.direction == "horizontal" then
-      return 15
-    elseif term.direction == "vertical" then
-      return 116
-    end
-  end,
-})
+-- setup must be called before loading
+vim.cmd("colorscheme github_dark_default")
 
 require("neotest").setup({
   adapters = {
-    require("neotest-python")({
-      dap = { justMyCode = false },
-    }),
-    require("neotest-plenary"),
-    require("neotest-vim-test")({
-      ignore_file_types = { "python", "vim", "lua" },
-    }),
+    require("neotest-python"),
   },
 })
 
-require("neodev").setup({
-  library = { plugins = { "neotest" }, types = true },
+local theme = {
+  fill = "TabLineFill",
+  -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
+  head = "TabLine",
+  current_tab = "TabLineSel",
+  tab = "TabLine",
+  win = "TabLine",
+  tail = "TabLine",
+}
+require("tabby").setup({
+  line = function(line)
+    return {
+      {
+        { "  ", hl = theme.head },
+        line.sep("", theme.head, theme.fill),
+      },
+      line.tabs().foreach(function(tab)
+        local hl = tab.is_current() and theme.current_tab or theme.tab
+        return {
+          line.sep("", hl, theme.fill),
+          tab.is_current() and "" or "󰆣",
+          tab.number(),
+          tab.name(),
+          tab.close_btn(""),
+          line.sep("", hl, theme.fill),
+          hl = hl,
+          margin = " ",
+        }
+      end),
+      line.spacer(),
+      line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
+        return {
+          line.sep("", theme.win, theme.fill),
+          win.is_current() and "" or "",
+          win.buf_name(),
+          line.sep("", theme.win, theme.fill),
+          hl = theme.win,
+          margin = " ",
+        }
+      end),
+      {
+        line.sep("", theme.tail, theme.fill),
+        { "  ", hl = theme.tail },
+      },
+      hl = theme.fill,
+    }
+  end,
+  -- option = {}, -- setup modules' option,
 })
 
--- run tests
-vim.api.nvim_set_keymap("n", "tr", ":lua require('neotest').run.run()<CR>", { noremap = true, silent = true })
--- run current file
-vim.api.nvim_set_keymap(
-  "n",
-  "tt",
-  ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>",
-  { noremap = true, silent = true }
-)
--- run test in debug mode
-vim.api.nvim_set_keymap(
-  "n",
-  "td",
-  ":lua require('neotest').run.run({strategy = 'dap')<CR>",
-  { noremap = true, silent = true }
-)
--- stop the test
-vim.api.nvim_set_keymap("n", "tx", ":lua require('neotest').run.stop()<CR>", { noremap = true, silent = true })
--- test output
-vim.api.nvim_set_keymap("n", "to", ":lua require('neotest').output.open()<CR>", { noremap = true, silent = true })
--- test summary
-vim.api.nvim_set_keymap("n", "ts", ":lua require('neotest').summary.toggle()<CR>", { noremap = true, silent = true })
-
-require("catppuccin").setup({
-  flavour = "mocha",
-  transparent_background = false,
+vim.api.nvim_set_hl(0, "TreesitterContext", {
+  bg = nil,
+  fg = nil,
 })
-vim.cmd.colorscheme("catppuccin")
 
-if vim.g.neovide then
-  vim.keymap.set({ "n", "v" }, "<C-+>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
-  vim.keymap.set({ "n", "v" }, "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
-  vim.keymap.set({ "n", "v" }, "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
-end
+vim.api.nvim_set_hl(0, "TreesitterContextBottom", {
+  underline = true,
+  sp = "#444c56",
+})
+
+vim.opt.cursorline = false
+
+-- Bubbles config for lualine
+-- Author: lokesh-krishna
+-- MIT license, see LICENSE for more details.
+-- stylua: ignore
+local custom_theme = require'lualine.themes.auto'
+
+custom_theme.normal.c.bg = nil
+custom_theme.insert.c.bg = nil
+custom_theme.command.c.bg = nil
+custom_theme.terminal.c.bg = nil
+custom_theme.visual.c.bg = nil
+
+require("lualine").setup({
+  options = {
+    theme = custom_theme,
+    component_separators = "",
+    section_separators = { left = "", right = "" },
+  },
+  sections = {
+    lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+    lualine_b = { "filename", "branch" },
+    lualine_c = {
+      "%=", --[[ add your center components here in place of this comment ]]
+    },
+    lualine_x = {},
+    lualine_y = { "filetype", "progress" },
+    lualine_z = {
+      { "location", separator = { right = "" }, left_padding = 2 },
+    },
+  },
+  inactive_sections = {
+    lualine_a = { "filename" },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { "location" },
+  },
+  tabline = {},
+  extensions = {},
+})
+
+require("devcontainer").setup({})
+
+vim.api.nvim_create_user_command("FormatDisable", function()
+  vim.g.autoformat = false
+end, { desc = "Disable autoformat on save", bang = true })
+
+vim.api.nvim_create_user_command("FormatEnable", function()
+  vim.g.autoformat = true
+end, { desc = "Enable autoformat on save", bang = true })

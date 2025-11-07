@@ -1,12 +1,10 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.dap.core",
-    "lazyvim.plugins.extras.formatting.black",
-    "lazyvim.plugins.extras.lang.markdown",
-    "lazyvim.plugins.extras.lang.python"
+
   ],
+  "install_version": 8,
   "news": {
-    "NEWS.md": "3314"
+    "NEWS.md": "11866"
   },
-  "version": 3
+  "version": 8
 }

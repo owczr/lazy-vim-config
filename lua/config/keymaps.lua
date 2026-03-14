@@ -57,3 +57,5 @@ vim.keymap.set("n", "<leader>tn", ":tabn<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>tp", ":tabp<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>tmp", ":-tabmove<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
+
+vim.keymap.set("n", "<leader>uz", ":ZenMode<CR>", { noremap = true })

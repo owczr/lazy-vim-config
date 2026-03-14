@@ -145,3 +145,5 @@ end, { desc = "Disable autoformat on save", bang = true })
 vim.api.nvim_create_user_command("FormatEnable", function()
   vim.g.autoformat = true
 end, { desc = "Enable autoformat on save", bang = true })
+
+vim.opt.colorcolumn = "120"

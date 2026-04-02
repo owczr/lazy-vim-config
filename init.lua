@@ -15,16 +15,22 @@ require("config.lazy")
 --   },
 -- })
 -- vim.cmd([[colorscheme tokyonight]])
--- Default options
-require("github-theme").setup({
-  options = {
-    transparent = true, -- Disable setting bg (make neovim's background transparent)
-    terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-  },
-})
-
--- setup must be called before loading
-vim.cmd("colorscheme github_dark_default")
+-- -- Default options
+-- require("github-theme").setup({
+--   options = {
+--     transparent = true, -- Disable setting bg (make neovim's background transparent)
+--     terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+--   },
+-- })
+--
+-- -- setup must be called before loading
+-- vim.cmd("colorscheme github_dark_default")
+--
+vim.opt.background = "dark" -- set this to dark or light
+vim.cmd("colorscheme oxocarbon")
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 
 require("neotest").setup({
   adapters = {
@@ -101,10 +107,10 @@ vim.opt.cursorline = false
 local custom_theme = require'lualine.themes.auto'
 
 custom_theme.normal.c.bg = nil
-custom_theme.insert.c.bg = nil
-custom_theme.command.c.bg = nil
-custom_theme.terminal.c.bg = nil
-custom_theme.visual.c.bg = nil
+-- custom_theme.insert.c.bg = nil
+-- custom_theme.command.c.bg = nil
+-- custom_theme.terminal.c.bg = nil
+-- custom_theme.visual.c.bg = nil
 
 require("lualine").setup({
   options = {
@@ -145,5 +151,3 @@ end, { desc = "Disable autoformat on save", bang = true })
 vim.api.nvim_create_user_command("FormatEnable", function()
   vim.g.autoformat = true
 end, { desc = "Enable autoformat on save", bang = true })
-
-vim.opt.colorcolumn = "120"

@@ -8,7 +8,38 @@ return {
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = {
+      preset = {
+        header = [[
+                       ,----.__                         |  
+                     ,'        `.                       |  
+                 _  /            :                      ,-.
+                |.`:              :                    /  -
+ ,'''''-._      | )               :                 _.'  --
+/         '.  _.`.   (88o    _    |_           _.-''      -
+|           `/    |   """   9@8o  / )-..__._.-'      ,/'`-/
+\     \    ,:     `.         ""  :_/              ,-'  |   
+ :     \-_/        `. `a,    ,   :              ,'    /    
+  `.    Y'       ,_  \ "7888"  ,'   _.--''''---')     |    
+    \ .'      _/'  `._\      ,'---.<...        /     |     
+    .'      ,' '-.._   ':._,::...,'   /'     ,'      /     
+   /'     ,/        '`''''           /     ,'       /      
+  ,'    /  :                        /    ,'       ,-''''._ 
+  |    ()   :                      |    |      .-'        '
+  `.   :     ) __............____ .'    |_ .--'            
+   `.   `.  ,'                   `/       `'-.__           
+.--'>    : /                     |   __...-._   `\         
+  .' |   `.                      "--'        ` ._/'--._    
+/'    |   `.                                           'akn
+.,   /|     :                                            \.
+  `'' :     :\                                             
+      )     :.:                                            
+      : ; . ; '                                            
+      '_: . '                                              
+        '_:'                                               
+]],
+      },
+    },
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },

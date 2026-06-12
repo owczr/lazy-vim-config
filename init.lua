@@ -26,11 +26,36 @@ require("config.lazy")
 -- -- setup must be called before loading
 -- vim.cmd("colorscheme github_dark_default")
 --
-vim.opt.background = "dark" -- set this to dark or light
-vim.cmd("colorscheme oxocarbon")
+-- vim.opt.background = "dark" -- set this to dark or light
+-- vim.cmd("colorscheme oxocarbon")
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+-- -- Default options:
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  inverse = false, -- invert background for search, diffs, statuslines and errors
+  contrast = "hard", -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = true,
+})
+vim.cmd("colorscheme gruvbox")
 
 require("neotest").setup({
   adapters = {
@@ -104,13 +129,44 @@ vim.opt.cursorline = false
 -- Author: lokesh-krishna
 -- MIT license, see LICENSE for more details.
 -- stylua: ignore
-local custom_theme = require'lualine.themes.auto'
-
-custom_theme.normal.c.bg = nil
+-- local custom_theme = require'lualine.themes.auto'
+--
+-- custom_theme.normal.c.bg = nil
 -- custom_theme.insert.c.bg = nil
 -- custom_theme.command.c.bg = nil
 -- custom_theme.terminal.c.bg = nil
 -- custom_theme.visual.c.bg = nil
+
+local colors = {
+  -- accents (bright)
+  blue = "#83a598", -- bright_blue [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
+  cyan = "#8ec07c", -- bright_aqua [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
+  red = "#fb4934", -- bright_red [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
+  violet = "#d3869b", -- bright_purple [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
+
+  -- neutrals (dark hard base)
+  black = "#1d2021", -- dark0_hard [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)[2](https://www.powershellgallery.com/packages/PSConsoleTheme/0.4.0/Content/Themes%5Cbase16-gruvbox-dark-hard.json)
+  grey = "#3c3836", -- dark1 (nice “hard” neutral surface) [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)[2](https://www.powershellgallery.com/packages/PSConsoleTheme/0.4.0/Content/Themes%5Cbase16-gruvbox-dark-hard.json)
+  white = "#ebdbb2", -- gray/fg-like light tone commonly used as main foreground [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)[2](https://www.powershellgallery.com/packages/PSConsoleTheme/0.4.0/Content/Themes%5Cbase16-gruvbox-dark-hard.json)
+}
+
+local custom_theme = {
+  normal = {
+    a = { fg = colors.black, bg = colors.violet },
+    b = { fg = colors.white, bg = colors.grey },
+    c = { fg = colors.white, bg = colors.black },
+  },
+
+  insert = { a = { fg = colors.black, bg = colors.blue } },
+  visual = { a = { fg = colors.black, bg = colors.cyan } },
+  replace = { a = { fg = colors.black, bg = colors.red } },
+
+  inactive = {
+    a = { fg = colors.white, bg = colors.black },
+    b = { fg = colors.white, bg = colors.black },
+    c = { fg = colors.white, bg = colors.black },
+  },
+}
 
 require("lualine").setup({
   options = {

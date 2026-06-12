@@ -9,7 +9,7 @@ return {
     -- refer to the configuration section below
     bigfile = { enabled = true },
     dashboard = {
-      width = 60,
+      width = 100,
       preset = {
         header = [[
                         ,----.__                         |  
@@ -44,6 +44,14 @@ return {
         {
           section = "header",
         },
+        {
+          pane = 2,
+          icon = " ",
+          section = "terminal",
+          cmd = 'echo "  $(lotr-quotes quote)"',
+          height = 2,
+          padding = 1,
+        },
         { section = "keys", gap = 1, padding = 1 },
         {
           pane = 2,
@@ -59,6 +67,17 @@ return {
           local in_git = Snacks.git.get_root() ~= nil
           local cmds = {
             {
+              title = "Reviews",
+              cmd = 'GH_HOST="github.ibm.com" gh pr list --limit 3 --search "review-requested:@me"',
+              action = function()
+                vim.fn.jobstart('gh pr list --limit 3 --search "review-requested:@me" --web', { detach = true })
+              end,
+              key = "R",
+              icon = " ",
+              height = 10,
+              enabled = true,
+            },
+            {
               title = "Notifications",
               cmd = 'GH_HOST="github.ibm.com" gh notify -s -n5',
               action = function()
@@ -71,17 +90,17 @@ return {
             },
             {
               icon = " ",
-              title = "Open PRs",
-              cmd = "gh pr list -L 3",
+              title = "My Open PRs",
+              cmd = 'gh pr list -L 5 --search "author:@me"',
               key = "P",
               action = function()
-                vim.fn.jobstart("gh pr list --web", { detach = true })
+                vim.fn.jobstart('gh pr list --search "author:@me" --web', { detach = true })
               end,
-              height = 7,
+              height = 10,
             },
             {
               title = "Releases",
-              cmd = "gh release list -L 3",
+              cmd = "gh release list -L 5",
               key = "i",
               action = function()
                 vim.fn.jobstart("gh release list --web", { detach = true })

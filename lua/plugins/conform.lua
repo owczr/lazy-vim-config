@@ -5,6 +5,7 @@ return {
       python = { "black", "ruff_fix", "ruff_organize_imports" },
       json = { "jq" },
       html = { "prettier" },
+      sql = { "sql-formatter" },
     },
   },
 }

@@ -1,1 +1,0 @@
-return { "derekwyatt/vim-scala" }

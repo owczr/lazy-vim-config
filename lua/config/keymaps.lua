@@ -61,3 +61,5 @@ vim.keymap.set("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>uz", ":ZenMode<CR>", { noremap = true })
 
 vim.keymap.set("n", "<leader>j", ":lua require('jq').run()<CR>", { noremap = true })
+
+vim.keymap.set("n", "f", ":Neominimap ToggleFocus<CR>", { noremap = true })

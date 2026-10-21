@@ -1,1 +1,0 @@
-return { "yazgoo/ensime-vim" }

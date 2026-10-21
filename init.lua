@@ -16,47 +16,51 @@ require("config.lazy")
 -- })
 -- vim.cmd([[colorscheme tokyonight]])
 -- -- Default options
--- require("github-theme").setup({
---   options = {
---     transparent = true, -- Disable setting bg (make neovim's background transparent)
---     terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
---   },
--- })
---
+require("github-theme").setup({
+  options = {
+    transparent = false, -- Disable setting bg (make neovim's background transparent)
+    terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+  },
+})
+
 -- -- setup must be called before loading
 -- vim.cmd("colorscheme github_dark_default")
---
+vim.cmd("colorscheme github_dark_dimmed")
+vim.api.nvim_set_hl(0, "Normal", { bg = "#0B0A11" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "#0B0A11" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#0B0A11" })
+
 -- vim.opt.background = "dark" -- set this to dark or light
 -- vim.cmd("colorscheme oxocarbon")
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 -- -- Default options:
-require("gruvbox").setup({
-  terminal_colors = true, -- add neovim terminal colors
-  undercurl = true,
-  underline = true,
-  bold = true,
-  italic = {
-    strings = true,
-    emphasis = true,
-    comments = true,
-    operators = false,
-    folds = true,
-  },
-  strikethrough = true,
-  invert_selection = false,
-  invert_signs = false,
-  invert_tabline = false,
-  inverse = false, -- invert background for search, diffs, statuslines and errors
-  contrast = "hard", -- can be "hard", "soft" or empty string
-  palette_overrides = {},
-  overrides = {},
-  dim_inactive = false,
-  transparent_mode = true,
-})
-vim.cmd("colorscheme gruvbox")
-
+-- require("gruvbox").setup({
+--   terminal_colors = true, -- add neovim terminal colors
+--   undercurl = true,
+--   underline = true,
+--   bold = true,
+--   italic = {
+--     strings = true,
+--     emphasis = true,
+--     comments = true,
+--     operators = false,
+--     folds = true,
+--   },
+--   strikethrough = true,
+--   invert_selection = false,
+--   invert_signs = false,
+--   invert_tabline = false,
+--   inverse = false, -- invert background for search, diffs, statuslines and errors
+--   contrast = "hard", -- can be "hard", "soft" or empty string
+--   palette_overrides = {},
+--   overrides = {},
+--   dim_inactive = false,
+--   transparent_mode = true,
+-- })
+-- vim.cmd("colorscheme gruvbox")
+--
 require("neotest").setup({
   adapters = {
     require("neotest-python"),
@@ -129,44 +133,44 @@ vim.opt.cursorline = false
 -- Author: lokesh-krishna
 -- MIT license, see LICENSE for more details.
 -- stylua: ignore
--- local custom_theme = require'lualine.themes.auto'
+local custom_theme = require'lualine.themes.auto'
+
+custom_theme.normal.c.bg = nil
+custom_theme.insert.c.bg = nil
+custom_theme.command.c.bg = nil
+custom_theme.terminal.c.bg = nil
+custom_theme.visual.c.bg = nil
+
+-- local colors = {
+--   -- accents (bright)
+--   blue = "#83a598", -- bright_blue [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
+--   cyan = "#8ec07c", -- bright_aqua [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
+--   red = "#fb4934", -- bright_red [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
+--   violet = "#d3869b", -- bright_purple [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
 --
--- custom_theme.normal.c.bg = nil
--- custom_theme.insert.c.bg = nil
--- custom_theme.command.c.bg = nil
--- custom_theme.terminal.c.bg = nil
--- custom_theme.visual.c.bg = nil
-
-local colors = {
-  -- accents (bright)
-  blue = "#83a598", -- bright_blue [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
-  cyan = "#8ec07c", -- bright_aqua [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
-  red = "#fb4934", -- bright_red [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
-  violet = "#d3869b", -- bright_purple [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)
-
-  -- neutrals (dark hard base)
-  black = "#1d2021", -- dark0_hard [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)[2](https://www.powershellgallery.com/packages/PSConsoleTheme/0.4.0/Content/Themes%5Cbase16-gruvbox-dark-hard.json)
-  grey = "#3c3836", -- dark1 (nice “hard” neutral surface) [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)[2](https://www.powershellgallery.com/packages/PSConsoleTheme/0.4.0/Content/Themes%5Cbase16-gruvbox-dark-hard.json)
-  white = "#ebdbb2", -- gray/fg-like light tone commonly used as main foreground [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)[2](https://www.powershellgallery.com/packages/PSConsoleTheme/0.4.0/Content/Themes%5Cbase16-gruvbox-dark-hard.json)
-}
-
-local custom_theme = {
-  normal = {
-    a = { fg = colors.black, bg = colors.violet },
-    b = { fg = colors.white, bg = colors.grey },
-    c = { fg = colors.white, bg = colors.black },
-  },
-
-  insert = { a = { fg = colors.black, bg = colors.blue } },
-  visual = { a = { fg = colors.black, bg = colors.cyan } },
-  replace = { a = { fg = colors.black, bg = colors.red } },
-
-  inactive = {
-    a = { fg = colors.white, bg = colors.black },
-    b = { fg = colors.white, bg = colors.black },
-    c = { fg = colors.white, bg = colors.black },
-  },
-}
+--   -- neutrals (dark hard base)
+--   black = "#1d2021", -- dark0_hard [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)[2](https://www.powershellgallery.com/packages/PSConsoleTheme/0.4.0/Content/Themes%5Cbase16-gruvbox-dark-hard.json)
+--   grey = "#3c3836", -- dark1 (nice “hard” neutral surface) [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)[2](https://www.powershellgallery.com/packages/PSConsoleTheme/0.4.0/Content/Themes%5Cbase16-gruvbox-dark-hard.json)
+--   white = "#ebdbb2", -- gray/fg-like light tone commonly used as main foreground [1](https://deepwiki.com/morhetz/gruvbox/3.1-color-palette)[2](https://www.powershellgallery.com/packages/PSConsoleTheme/0.4.0/Content/Themes%5Cbase16-gruvbox-dark-hard.json)
+-- }
+--
+-- local custom_theme = {
+--   normal = {
+--     a = { fg = colors.black, bg = colors.violet },
+--     b = { fg = colors.white, bg = colors.grey },
+--     c = { fg = colors.white, bg = colors.black },
+--   },
+--
+--   insert = { a = { fg = colors.black, bg = colors.blue } },
+--   visual = { a = { fg = colors.black, bg = colors.cyan } },
+--   replace = { a = { fg = colors.black, bg = colors.red } },
+--
+--   inactive = {
+--     a = { fg = colors.white, bg = colors.black },
+--     b = { fg = colors.white, bg = colors.black },
+--     c = { fg = colors.white, bg = colors.black },
+--   },
+-- }
 
 require("lualine").setup({
   options = {
@@ -175,15 +179,19 @@ require("lualine").setup({
     section_separators = { left = "", right = "" },
   },
   sections = {
-    lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+    -- lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+    lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
     lualine_b = { "filename", "branch" },
     lualine_c = {
       "%=", --[[ add your center components here in place of this comment ]]
     },
     lualine_x = {},
     lualine_y = { "filetype", "progress" },
+    -- lualine_z = {
+    --   { "location", separator = { right = "" }, left_padding = 2 },
+    -- },
     lualine_z = {
-      { "location", separator = { right = "" }, left_padding = 2 },
+      { "location", separator = { right = "" }, left_padding = 2 },
     },
   },
   inactive_sections = {
@@ -207,3 +215,43 @@ end, { desc = "Disable autoformat on save", bang = true })
 vim.api.nvim_create_user_command("FormatEnable", function()
   vim.g.autoformat = true
 end, { desc = "Enable autoformat on save", bang = true })
+
+-- for nvim-metals
+-- vim.opt_global.shortmess:remove("F")
+
+local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "scala", "sbt", "java" },
+  callback = function()
+    require("metals").initialize_or_attach({})
+  end,
+  group = nvim_metals_group,
+})
+local dap = require("dap")
+
+dap.configurations.scala = {
+  {
+    type = "scala",
+    request = "launch",
+    name = "Run or Test Target",
+    metals = {
+      runType = "runOrTestFile",
+    },
+  },
+  {
+    type = "scala",
+    request = "launch",
+    name = "Test Target",
+    metals = {
+      runType = "testTarget",
+    },
+  },
+  {
+    type = "scala",
+    request = "attach",
+    name = "Attach to Localhost",
+    hostName = "localhost",
+    port = 5005,
+    buildTarget = "root",
+  },
+}

@@ -12,33 +12,53 @@ return {
       width = 100,
       preset = {
         header = [[
-                        ,----.__                         |  
-                      ,'        `.                       |  
-                  _  /            :                      ,-.
-                 |.`:              :                    /  -
-  ,'''''-._      | )               :                 _.'  --
- /         '.  _.`.   (88o    _    |_           _.-''      -
- |           `/    |   """   9@8o  / )-..__._.-'      ,/'`-/
- \     \    ,:     `.         ""  :_/              ,-'  |   
-  :     \-_/        `. `a,    ,   :              ,'    /    
-   `.    Y'       ,_  \ "7888"  ,'   _.--''''---')     |    
-     \ .'      _/'  `._\      ,'---.<...        /     |     
-     .'      ,' '-.._   ':._,::...,'   /'     ,'      /     
-    /'     ,/        '`''''           /     ,'       /      
-   ,'    /  :                        /    ,'       ,-''''._ 
-   |    ()   :                      |    |      .-'        '
-   `.   :     ) __............____ .'    |_ .--'            
-    `.   `.  ,'                   `/       `'-.__           
- .--'>    : /                     |   __...-._   `\         
-   .' |   `.                      "--'        ` ._/'--._    
- /'    |   `.                                           'akn
- .,   /|     :                                            \.
-   `'' :     :\                                             
-       )     :.:                                            
-       : ; . ; '                                            
-       '_: . '                                              
-         '_:'                                               
- ]],
+⠀⠀⠘⢤⣀⣀⣀⣀⣤⣤⣤⣤⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠉⠛⠛⠿⠿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⣀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠛⠂⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠚⠉⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⠛⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢀⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣠⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠈⠓⠦⣀⠀⠀⠀
+⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠈⠳⣼⡿
+⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⠀⠈⠁
+⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣼⣿⣿⣿⣿⣿⣿⡿⠟⠛⠉⠉⠉⠉⠙⠻⠿⣿⣿⣿⣿⣅⠀⠀⠀⠀⠀⠀⠀
+⢰⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⠁⠀⠀⠀⠀⠀⠀⠀
+⡾⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀
+        ]],
+        --        header = [[
+        --                        ,----.__                         |
+        --                      ,'        `.                       |
+        --                  _  /            :                      ,-.
+        --                 |.`:              :                    /  -
+        --  ,'''''-._      | )               :                 _.'  --
+        -- /         '.  _.`.   (88o    _    |_           _.-''      -
+        -- |           `/    |   """   9@8o  / )-..__._.-'      ,/'`-/
+        -- \     \    ,:     `.         ""  :_/              ,-'  |
+        --  :     \-_/        `. `a,    ,   :              ,'    /
+        --   `.    Y'       ,_  \ "7888"  ,'   _.--''''---')     |
+        --     \ .'      _/'  `._\      ,'---.<...        /     |
+        --     .'      ,' '-.._   ':._,::...,'   /'     ,'      /
+        --    /'     ,/        '`''''           /     ,'       /
+        --   ,'    /  :                        /    ,'       ,-''''._
+        --   |    ()   :                      |    |      .-'        '
+        --   `.   :     ) __............____ .'    |_ .--'
+        --    `.   `.  ,'                   `/       `'-.__
+        -- .--'>    : /                     |   __...-._   `\
+        --   .' |   `.                      "--'        ` ._/'--._
+        -- /'    |   `.                                           'akn
+        -- .,   /|     :                                            \.
+        --   `'' :     :\
+        --       )     :.:
+        --       : ; . ; '
+        --       '_: . '
+        --         '_:'
+        -- ]],
       },
       sections = {
         {
@@ -66,26 +86,26 @@ return {
         function()
           local in_git = Snacks.git.get_root() ~= nil
           local cmds = {
-            {
-              title = "Reviews",
-              cmd = 'GH_HOST="github.ibm.com" gh pr list --limit 3 --search "review-requested:@me"',
-              action = function()
-                vim.fn.jobstart('gh pr list --limit 3 --search "review-requested:@me" --web', { detach = true })
-              end,
-              key = "R",
-              icon = " ",
-              height = 10,
-              enabled = true,
-            },
+            -- {
+            --   title = "Reviews",
+            --   cmd = "sir",
+            --   action = function()
+            --     vim.fn.jobstart('gh pr list --limit 3 --search "review-requested:@me" --web', { detach = true })
+            --   end,
+            --   key = "R",
+            --   icon = " ",
+            --   height = 10,
+            --   enabled = true,
+            -- },
             {
               title = "Notifications",
-              cmd = 'GH_HOST="github.ibm.com" gh notify -s -n5',
+              cmd = 'GH_HOST="github.ibm.com" gh notify -s -n10',
               action = function()
                 vim.ui.open("https://github.ibm.com/notifications")
               end,
               key = "N",
               icon = " ",
-              height = 5,
+              height = 20,
               enabled = true,
             },
             {
@@ -98,16 +118,16 @@ return {
               end,
               height = 10,
             },
-            {
-              title = "Releases",
-              cmd = "gh release list -L 5",
-              key = "i",
-              action = function()
-                vim.fn.jobstart("gh release list --web", { detach = true })
-              end,
-              icon = " ",
-              height = 7,
-            },
+            -- {
+            --   title = "Releases",
+            --   cmd = "gh release list -L 5",
+            --   key = "i",
+            --   action = function()
+            --     vim.fn.jobstart("gh release list --web", { detach = true })
+            --   end,
+            --   icon = " ",
+            --   height = 7,
+            -- },
             {
               icon = " ",
               title = "Git Status",

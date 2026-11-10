@@ -20,15 +20,24 @@ require("github-theme").setup({
   options = {
     transparent = false, -- Disable setting bg (make neovim's background transparent)
     terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+    darken = {
+      floats = false,
+      sidebars = {
+        enable = false,
+      },
+    },
   },
 })
 
 -- -- setup must be called before loading
 -- vim.cmd("colorscheme github_dark_default")
-vim.cmd("colorscheme github_dark_dimmed")
-vim.api.nvim_set_hl(0, "Normal", { bg = "#0B0A11" })
-vim.api.nvim_set_hl(0, "NormalNC", { bg = "#0B0A11" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#0B0A11" })
+vim.cmd("colorscheme github_dark_default")
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "#0B0A11" })
+-- vim.api.nvim_set_hl(0, "NormalNC", { bg = "#0B0A11" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#0B0A11" })
+-- vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "#0B0A11", fg = "#636e7b" })
+-- vim.api.nvim_set_hl(0, "MetalsTypeDecoration", { bg = "#0B0A11", fg = "#636e7b" })
+-- vim.api.nvim_set_hl(0, "Folded", { bg = "#161b22" })
 
 -- vim.opt.background = "dark" -- set this to dark or light
 -- vim.cmd("colorscheme oxocarbon")

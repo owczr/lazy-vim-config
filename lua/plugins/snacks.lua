@@ -159,5 +159,15 @@ return {
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+    styles = {
+      -- <C-/> terminal (LazyVim -> Snacks.terminal) opens as a centered floating window
+      terminal = {
+        position = "float",
+        backdrop = 60,
+        width = 0.8,
+        height = 0.8,
+        border = "rounded",
+      },
+    },
   },
 }
